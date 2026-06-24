@@ -1,0 +1,20 @@
+uuid: dd2e1da8-cfd2-4bca-b3d4-ae50c6ec4654
+langcode: en
+status: true
+dependencies:
+  theme:
+    - riverside_commons
+_core:
+  default_config_hash: 6aOgWsNTXjqrDm98TXSAjP6qd2nCijD1xw45MrnbK-Y
+id: riverside_commons_page_title
+theme: riverside_commons
+region: header
+weight: -5
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  label_display: '0'
+  provider: core
+visibility: {  }

@@ -1,0 +1,20 @@
+uuid: f22d7921-3bf2-4876-9e35-b6b16d59f9b6
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_sessions
+field_name: field_sessions
+entity_type: node
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

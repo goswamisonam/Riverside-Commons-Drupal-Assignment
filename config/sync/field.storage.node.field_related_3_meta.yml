@@ -1,0 +1,21 @@
+uuid: 76bc3432-ab35-4019-8fef-2b9378a69a50
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_related_3_meta
+field_name: field_related_3_meta
+entity_type: node
+type: string
+settings:
+  max_length: 255
+  case_sensitive: false
+  is_ascii: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

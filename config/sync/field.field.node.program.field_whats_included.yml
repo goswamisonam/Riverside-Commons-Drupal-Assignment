@@ -1,0 +1,22 @@
+uuid: b2b44480-f8f7-4803-ac66-04392269bd4d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_whats_included
+    - node.type.program
+  module:
+    - text
+id: node.program.field_whats_included
+field_name: field_whats_included
+entity_type: node
+bundle: program
+label: "What's Included"
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

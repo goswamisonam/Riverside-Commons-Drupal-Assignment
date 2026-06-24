@@ -1,0 +1,19 @@
+uuid: f4148eb1-ce35-44e1-8ff9-efc3363b6caa
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_related_3_label
+    - node.type.program
+id: node.program.field_related_3_label
+field_name: field_related_3_label
+entity_type: node
+bundle: program
+label: 'Related 3 Label'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

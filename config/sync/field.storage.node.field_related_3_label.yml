@@ -1,0 +1,21 @@
+uuid: ce6454cd-acfe-492b-8c6d-27235e3df9a6
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_related_3_label
+field_name: field_related_3_label
+entity_type: node
+type: string
+settings:
+  max_length: 255
+  case_sensitive: false
+  is_ascii: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
