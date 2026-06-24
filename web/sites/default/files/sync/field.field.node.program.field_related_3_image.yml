@@ -1,0 +1,38 @@
+uuid: 2624b2a8-ecb1-44bd-8a34-7c7e94d0f273
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_related_3_image
+    - node.type.program
+  module:
+    - image
+id: node.program.field_related_3_image
+field_name: field_related_3_image
+entity_type: node
+bundle: program
+label: 'Related 3 Image'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'png gif jpg jpeg webp'
+  max_filesize: ''
+  max_resolution: ''
+  min_resolution: ''
+  alt_field: true
+  alt_field_required: true
+  title_field: false
+  title_field_required: false
+  default_image:
+    uuid: null
+    alt: ''
+    title: ''
+    width: null
+    height: null
+field_type: image

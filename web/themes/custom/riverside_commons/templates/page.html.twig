@@ -1,0 +1,24 @@
+<header class="site-header">
+  <a href="/" class="site-logo">Riverside Commons</a>
+  <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">☰</button>
+  <nav id="primary-nav" class="primary-nav" aria-label="Primary navigation">
+    <a href="/programs">Programs</a>
+    <a href="#">About</a>
+    <a href="#">Get involved</a>
+    <a href="#">Events</a>
+    <a href="#">Contact</a>
+    <a class="donate-link" href="#">Donate</a>
+  </nav>
+</header>
+
+<main id="main-content">
+  {{ page.content }}
+</main>
+
+<footer class="site-footer">
+  <div><strong>Riverside Commons</strong><p>14 Mill Street<br>Riverfront District<br>Open Tue–Sun</p></div>
+  <div><strong>Programs</strong><p>Classes<br>Open Studios<br>Exhibitions<br>Youth Workshops</p></div>
+  <div><strong>About</strong><p>Our story<br>Resident artists<br>Visit<br>Press</p></div>
+  <div><strong>Get involved</strong><p>Membership<br>Donate<br>Volunteer<br>Contact</p></div>
+  <div class="footer-bottom">{{ footer_copyright }}</div>
+</footer>

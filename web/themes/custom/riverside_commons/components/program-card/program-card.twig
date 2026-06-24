@@ -1,0 +1,17 @@
+<article class="program-card">
+  <a class="program-card-link" href="{{ url|default('#') }}">
+    <div class="program-card-image">
+      {% block image %}{% endblock %}
+    </div>
+    {% if category %}
+      <span>{{ category }}</span>
+    {% endif %}
+    <h3>{{ title }}</h3>
+    {% if description %}
+      <p class="card-description">{{ description }}</p>
+    {% endif %}
+    {% if meta %}
+      <p class="card-meta">{{ meta }}</p>
+    {% endif %}
+  </a>
+</article>

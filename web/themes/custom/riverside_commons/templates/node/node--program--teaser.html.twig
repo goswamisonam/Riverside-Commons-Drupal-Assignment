@@ -1,0 +1,27 @@
+{% set card_meta %}
+  {% if program_sessions and program_sessions != '0' %}{{ program_sessions }} weeks · {% endif %}
+  {% if program_schedule %}{{ program_schedule }} · {% endif %}
+  {% if program_price and program_price != '0.00' %}${{ program_price|number_format(0) }}{% else %}Free entry{% endif %}
+{% endset %}
+
+<article class="program-card">
+  <a class="program-card-link" href="{{ url }}">
+    <div class="program-card-image">
+      {% if program_image_url %}
+        <img src="{{ program_image_url }}" alt="{{ label }}">
+      {% endif %}
+    </div>
+
+    {% if program_category %}
+      <span>{{ program_category }}</span>
+    {% endif %}
+
+    <h3>{{ label }}</h3>
+
+    {% if program_summary %}
+      <p class="card-description">{{ program_summary }}</p>
+    {% endif %}
+
+    <p class="card-meta">{{ card_meta|trim }}</p>
+  </a>
+</article>

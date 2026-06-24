@@ -1,0 +1,13 @@
+name: Riverside Commons
+type: theme
+description: Custom Drupal 11 theme for Riverside Commons assignment.
+core_version_requirement: ^11
+base theme: false
+
+libraries:
+  - riverside_commons/global
+
+regions:
+  header: Header
+  content: Content
+  footer: Footer

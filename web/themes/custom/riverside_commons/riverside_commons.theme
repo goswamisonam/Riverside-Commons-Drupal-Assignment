@@ -1,0 +1,118 @@
+<?php
+
+use Drupal\Core\Datetime\DrupalDateTime;
+
+function riverside_commons_preprocess_page(&$variables) {
+  $variables['footer_copyright'] = \Drupal::config('riverside_settings.settings')->get('footer_copyright') ?: '© 2026 Riverside Commons · Instagram · Facebook';
+}
+
+function riverside_commons_preprocess_node__program(&$variables) {
+  riverside_commons_program_variables($variables);
+}
+
+function riverside_commons_preprocess_node__program__teaser(&$variables) {
+  riverside_commons_program_variables($variables);
+  $node = $variables['node'];
+
+  if (!$node->get('field_program_image')->isEmpty()) {
+    $file = $node->get('field_program_image')->entity;
+    if ($file) {
+      $variables['program_image_url'] = \Drupal::service('file_url_generator')->generateAbsoluteString($file->getFileUri());
+    }
+  }
+
+  $variables['program_summary'] = !$node->get('field_program_summary')->isEmpty() ? $node->get('field_program_summary')->value : '';
+}
+
+function riverside_commons_program_variables(&$variables) {
+  $node = $variables['node'];
+
+  $get = function ($field) use ($node) {
+    return !$node->get($field)->isEmpty() ? $node->get($field)->value : '';
+  };
+
+  $variables['program_category'] = !$node->get('field_program_category')->isEmpty()
+    ? $node->get('field_program_category')->entity->label()
+    : '';
+
+  $variables['program_level'] = $get('field_level');
+  $variables['program_schedule'] = $get('field_schedule');
+  $variables['program_sessions'] = $get('field_sessions');
+  $variables['program_class_size'] = $get('field_class_size');
+  $variables['program_location'] = $get('field_location');
+  $variables['program_price'] = $get('field_price');
+  $variables['program_member_price'] = $get('field_member_price');
+
+  $start = $get('field_start_date');
+  $end = $get('field_end_date');
+  $variables['program_date_range'] = '';
+
+  if ($start && $end) {
+    $start_date = new DrupalDateTime($start);
+    $end_date = new DrupalDateTime($end);
+    $variables['program_date_range'] = $start_date->format('M j') . ' – ' . $end_date->format('M j');
+  }
+}
+
+function riverside_commons_preprocess_views_view(&$variables) {
+  if ($variables['view']->id() === 'programs') {
+    $config = \Drupal::config('riverside_settings.settings');
+    $variables['riverside_programs_intro'] = $config->get('programs_intro') ?: 'Classes, open studios, exhibitions, and workshops — something for every age and skill level.';
+    $variables['riverside_cta_title'] = $config->get('cta_title') ?: 'Not sure where to start?';
+    $variables['riverside_cta_text'] = $config->get('cta_text') ?: 'Become a member for open-studio access and member pricing on every class.';
+  }
+}
+
+function riverside_commons_preprocess_html(&$variables) {
+  $node = \Drupal::routeMatch()->getParameter('node');
+
+  if ($node instanceof \Drupal\node\NodeInterface && $node->bundle() === 'program') {
+    $title = $node->label();
+    $url = $node->toUrl('canonical', ['absolute' => TRUE])->toString();
+    $description = !$node->get('field_program_summary')->isEmpty() ? $node->get('field_program_summary')->value : '';
+
+    $json_ld = [
+      '@context' => 'https://schema.org',
+      '@graph' => [
+        [
+          '@type' => 'Event',
+          'name' => $title,
+          'description' => $description,
+          'url' => $url,
+          'startDate' => !$node->get('field_start_date')->isEmpty() ? $node->get('field_start_date')->value : '',
+          'endDate' => !$node->get('field_end_date')->isEmpty() ? $node->get('field_end_date')->value : '',
+          'eventAttendanceMode' => 'https://schema.org/OfflineEventAttendanceMode',
+          'eventStatus' => 'https://schema.org/EventScheduled',
+          'location' => [
+            '@type' => 'Place',
+            'name' => !$node->get('field_location')->isEmpty() ? $node->get('field_location')->value : 'Riverside Commons',
+            'address' => '14 Mill Street, Riverfront District',
+          ],
+          'offers' => [
+            '@type' => 'Offer',
+            'price' => !$node->get('field_price')->isEmpty() ? $node->get('field_price')->value : '',
+            'priceCurrency' => 'USD',
+            'availability' => 'https://schema.org/InStock',
+            'url' => $url,
+          ],
+        ],
+        [
+          '@type' => 'BreadcrumbList',
+          'itemListElement' => [
+            ['@type' => 'ListItem', 'position' => 1, 'name' => 'Programs', 'item' => \Drupal::request()->getSchemeAndHttpHost() . '/programs'],
+            ['@type' => 'ListItem', 'position' => 2, 'name' => $title, 'item' => $url],
+          ],
+        ],
+      ],
+    ];
+
+    $variables['#attached']['html_head'][] = [
+      [
+        '#tag' => 'script',
+        '#attributes' => ['type' => 'application/ld+json'],
+        '#value' => json_encode($json_ld, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
+      ],
+      'riverside_program_jsonld',
+    ];
+  }
+}

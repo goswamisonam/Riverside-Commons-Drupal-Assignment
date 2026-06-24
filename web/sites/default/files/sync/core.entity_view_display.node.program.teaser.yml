@@ -1,0 +1,115 @@
+uuid: 0971976a-75d2-4f4d-b221-18f5faa48989
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.program.body
+    - field.field.node.program.field_class_size
+    - field.field.node.program.field_end_date
+    - field.field.node.program.field_instructor_bio
+    - field.field.node.program.field_instructor_image
+    - field.field.node.program.field_instructor_name
+    - field.field.node.program.field_level
+    - field.field.node.program.field_location
+    - field.field.node.program.field_member_price
+    - field.field.node.program.field_price
+    - field.field.node.program.field_program_category
+    - field.field.node.program.field_program_image
+    - field.field.node.program.field_program_summary
+    - field.field.node.program.field_related_1_image
+    - field.field.node.program.field_related_1_label
+    - field.field.node.program.field_related_1_meta
+    - field.field.node.program.field_related_1_title
+    - field.field.node.program.field_related_2_image
+    - field.field.node.program.field_related_2_label
+    - field.field.node.program.field_related_2_meta
+    - field.field.node.program.field_related_2_title
+    - field.field.node.program.field_related_3_image
+    - field.field.node.program.field_related_3_label
+    - field.field.node.program.field_related_3_meta
+    - field.field.node.program.field_related_3_title
+    - field.field.node.program.field_related_programs
+    - field.field.node.program.field_schedule
+    - field.field.node.program.field_sessions
+    - field.field.node.program.field_start_date
+    - field.field.node.program.field_what_youll_learn
+    - field.field.node.program.field_whats_included
+    - node.type.program
+  module:
+    - image
+    - user
+id: node.program.teaser
+targetEntityType: node
+bundle: program
+mode: teaser
+content:
+  field_program_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_program_summary:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  body: true
+  changed: true
+  default_langcode: true
+  field_class_size: true
+  field_end_date: true
+  field_instructor_bio: true
+  field_instructor_image: true
+  field_instructor_name: true
+  field_level: true
+  field_location: true
+  field_member_price: true
+  field_price: true
+  field_program_category: true
+  field_related_1_image: true
+  field_related_1_label: true
+  field_related_1_meta: true
+  field_related_1_title: true
+  field_related_2_image: true
+  field_related_2_label: true
+  field_related_2_meta: true
+  field_related_2_title: true
+  field_related_3_image: true
+  field_related_3_label: true
+  field_related_3_meta: true
+  field_related_3_title: true
+  field_related_programs: true
+  field_schedule: true
+  field_sessions: true
+  field_start_date: true
+  field_what_youll_learn: true
+  field_whats_included: true
+  nid: true
+  path: true
+  promote: true
+  revision_default: true
+  revision_log: true
+  revision_timestamp: true
+  revision_translation_affected: true
+  revision_uid: true
+  status: true
+  sticky: true
+  type: true
+  uuid: true
+  vid: true

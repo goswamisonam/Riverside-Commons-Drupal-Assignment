@@ -1,0 +1,23 @@
+uuid: 93bdea2d-72ed-4c95-90ee-497e557ada93
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_related_programs
+    - node.type.program
+id: node.program.field_related_programs
+field_name: field_related_programs
+entity_type: node
+bundle: program
+label: 'Related Programs'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      program: program
+field_type: entity_reference

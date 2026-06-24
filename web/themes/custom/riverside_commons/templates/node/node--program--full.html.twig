@@ -1,0 +1,100 @@
+<article{{ attributes.addClass('program-detail') }}>
+
+  <nav class="breadcrumb-lite" aria-label="Breadcrumb">
+    <a href="/programs">Programs</a> / <a href="#">Studio Classes</a> / <span>{{ label }}</span>
+  </nav>
+
+  <div class="program-layout">
+    <div class="program-main">
+      {% if program_category %}
+        <div class="eyebrow">{{ program_category }}</div>
+      {% endif %}
+
+      <h1>{{ label }}</h1>
+
+      {% if content.field_program_summary %}
+        <div class="program-summary">{{ content.field_program_summary }}</div>
+      {% endif %}
+
+      <div class="program-hero">
+        {{ content.field_program_image }}
+      </div>
+
+      <section class="program-section">
+        <h2>About this class</h2>
+        {{ content.body }}
+      </section>
+
+      <section class="program-section">
+        <h2>What you'll learn</h2>
+        {{ content.field_what_youll_learn }}
+      </section>
+
+      <section class="program-section">
+        <h2>What's included</h2>
+        {{ content.field_whats_included }}
+      </section>
+
+      <section class="program-section instructor">
+        <h2>Your instructor</h2>
+        <div class="instructor-row">
+          <div class="instructor-photo">
+            {{ content.field_instructor_image }}
+          </div>
+          <div>
+            <strong>{{ content.field_instructor_name }}</strong>
+            {{ content.field_instructor_bio }}
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <aside class="program-sidebar" aria-label="Registration details">
+      <div class="register-card">
+        <div class="price">${{ program_price|number_format(0) }}</div>
+        {% if program_member_price %}
+          <p class="member-price">8-week course · member price ${{ program_member_price|number_format(0) }}</p>
+        {% endif %}
+
+        <dl>
+          <div><dt>Level</dt><dd>{{ program_level }}</dd></div>
+          <div><dt>Schedule</dt><dd>{{ program_schedule }}</dd></div>
+          <div><dt>Dates</dt><dd>{{ program_date_range }}</dd></div>
+          <div><dt>Sessions</dt><dd>{{ program_sessions }} classes</dd></div>
+          <div><dt>Class size</dt><dd>{{ program_class_size }} max</dd></div>
+          <div><dt>Location</dt><dd>{{ program_location }}</dd></div>
+        </dl>
+
+        <a href="#" class="button-primary">Register</a>
+        <a href="#" class="button-secondary">Add to wishlist</a>
+        <p class="fine-print">Free cancellation up to 7 days before the first class.</p>
+      </div>
+    </aside>
+  </div>
+
+  
+  <section class="related-programs">
+    <h2>More studio classes</h2>
+    <div class="card-grid">
+      {% for i in 1..3 %}
+        {% set img = attribute(content, 'field_related_' ~ i ~ '_image') %}
+        {% set label_field = attribute(content, 'field_related_' ~ i ~ '_label')|render|striptags|trim %}
+        {% set title_field = attribute(content, 'field_related_' ~ i ~ '_title')|render|striptags|trim %}
+        {% set meta_field = attribute(content, 'field_related_' ~ i ~ '_meta')|render|striptags|trim %}
+
+        {% embed 'riverside_commons:program-card' with {
+          title: title_field,
+          url: '#',
+          category: label_field,
+          meta: meta_field
+        } only %}
+          {% block image %}
+            {{ img }}
+          {% endblock %}
+        {% endembed %}
+      {% endfor %}
+    </div>
+  </section>
+
+
+</article>

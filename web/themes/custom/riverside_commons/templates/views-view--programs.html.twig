@@ -1,0 +1,28 @@
+<section class="programs-page">
+  <header class="programs-page-header">
+    <h1>Programs</h1>
+    <p>{{ riverside_programs_intro|default('Classes, open studios, exhibitions, and workshops — something for every age and skill level.') }}</p>
+  </header>
+
+  <div class="program-filter-pills" aria-label="Program categories">
+    <a class="is-active" href="/programs">All programs</a>
+    <a href="/programs">Studio Classes</a>
+    <a href="/programs">Open Studios</a>
+    <a href="/programs">Exhibitions</a>
+    <a href="/programs">Youth Workshops</a>
+  </div>
+
+  <p class="program-count">Showing 6 of 24 programs</p>
+
+  {{ rows }}
+
+  {% if pager %}
+    {{ pager }}
+  {% endif %}
+
+  <section class="membership-cta">
+    <h2>{{ riverside_cta_title|default('Not sure where to start?') }}</h2>
+    <p>{{ riverside_cta_text|default('Become a member for open-studio access and member pricing on every class.') }}</p>
+    <a href="#" class="button-primary">Become a Member</a>
+  </section>
+</section>

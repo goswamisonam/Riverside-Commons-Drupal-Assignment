@@ -1,0 +1,7 @@
+riverside_settings.form:
+  path: '/admin/config/riverside/settings'
+  defaults:
+    _form: '\Drupal\riverside_settings\Form\RiversideSettingsForm'
+    _title: 'Riverside Settings'
+  requirements:
+    _permission: 'administer site configuration'

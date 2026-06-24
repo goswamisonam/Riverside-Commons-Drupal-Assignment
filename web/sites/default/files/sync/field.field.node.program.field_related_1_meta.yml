@@ -1,0 +1,19 @@
+uuid: d222f975-353f-4059-8cb4-5feecd2cf84b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_related_1_meta
+    - node.type.program
+id: node.program.field_related_1_meta
+field_name: field_related_1_meta
+entity_type: node
+bundle: program
+label: 'Related 1 Meta'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
